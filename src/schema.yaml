@@ -1,0 +1,33 @@
+COLUMNS:
+  age : float64
+  sex  : object 
+  weight : int64  
+  bmi : float64
+  hereditary_diseases : object 
+  no_of_dependents : int64 
+  smoker : object 
+  city : object 
+  bloodpressure :  int64  
+  diabetes : object 
+  regular_ex : object 
+  job_title : object 
+  claim : float64
+
+numerical_columns:
+- 'age'
+- 'weight'
+- 'bmi'
+- 'no_of_dependents'
+- 'bloodpressure'
+
+categorical_columns:
+- 'job_title'
+- 'regular_ex'
+- 'diabetes'
+- 'sex'
+- 'city'
+- 'smoker'
+- 'hereditary_diseases'
+   
+TARGET_COLUMN:
+  target_column: claim

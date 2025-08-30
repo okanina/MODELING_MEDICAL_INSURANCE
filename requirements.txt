@@ -1,0 +1,14 @@
+numpy
+pandas
+dill
+xgboost
+seaborn
+matplotlib
+pathlib
+dataclasses
+scikit-learn==1.5.2
+python-box==6.0.2
+ensure==1.0.2
+pyyaml
+reusables
+-e .
