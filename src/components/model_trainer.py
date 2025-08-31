@@ -34,42 +34,10 @@ class ModelTrainer:
             X_train, y_train = (train_arr[:,:-1], 
                                train_arr[:, -1]                                           
                                 )
-            models = self.config.models
-                       
-            params = self.config.param
-            
-            # models = {
-            #           'LinearRegression': LinearRegression(),
-            #           'Ridge': Ridge(),
-            #           'Lasso': Lasso(),
-            #           'DecisionTreeRegressor': DecisionTreeRegressor(),
-            #           'RandomForestRegressor': RandomForestRegressor(),
-            #           'AdaBoostRegressor': AdaBoostRegressor(),
-            #         #   'KNeighborsRegressor': KNeighborsRegressor(),
-            #         # 'XGBRegressor': XGBRegressor()
-            #          }
-            # params = {'LinearRegression': {},
-            #           'Ridge': {'alpha': [1.0, 2.0, 3.0]},
-            #           'Lasso': {},
-            #           'DecisionTreeRegressor': {'criterion': ['squared_error','friedman_mse', 'absolute_error', 'poisson'],
-            #                                   'splitter': ["best", "random"],
-            #                                   'max_depth': range(100,300,100) },
-            #           'RandomForestRegressor':{'max_features': [0.25,0.5,0.75,1.0],
-            #                                  'max_depth': range(50,200,50),
-            #                                  'n_estimators': range(50,200,50)
-            #                                  },
-            #           'AdaBoostRegressor': {'n_estimators': range(50,200,50),
-            #                               'learning_rate': [.001, .01, .05, .1],
-            #                               'random_state': [1]},
-            #         #   'KNeighborsRegressor':{'n_neighbors': range(5,15,5),
-            #         #                       'weights': ['distance', 'uniform']
-            #         #                       },
-                    #   'XGBRegressor': {'learning_rate': [0.1, 0.01, 0.05, 0.001],
-                    #                  'n_estimators': range(100, 300, 100),
-                    #                  'max_depth' : range(3,9,3)
-                    #                 } 
-            # }
 
+            models = self.config.models                       
+            params = self.config.param
+                                 
             for i in range(len(list(models.values()))):
 
                 model = eval(list(models.values())[i])
@@ -84,9 +52,8 @@ class ModelTrainer:
                 y_train_pred = model.predict(X_train)
                 train_score = r2_score(y_train, y_train_pred)
 
-                report[list(models.keys())[i]] = train_score
-                logging.info(f"Done training {list(models.values())[i]}")
-
+                report[model] = train_score
+                
             logging.info("Model Training Completed.")
 
             best_model_score = max(list(report.values())) 
@@ -95,11 +62,10 @@ class ModelTrainer:
                 raise Exception("No model found.")
                                  
             best_model_name = list(report.keys())[list(report.values()).index(best_model_score)]
-            best_model= self.config.models[best_model_name]
+            
+            logging.info(f"The best model found is {best_model_name} has been found.")
 
-            logging.info(f"The best model found is {best_model} has been found.")
-
-            save_obj(self.config.trained_model_file_path, best_model)
+            save_obj(self.config.trained_model_file_path, best_model_name)
 
             model_trainer_artifact = ModelTrainerArtifact(trained_model_file_path =self.config.trained_model_file_path)
 

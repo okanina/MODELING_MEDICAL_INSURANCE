@@ -1,5 +1,4 @@
 import sys
-import joblib
 import pickle
 from pathlib import Path
 from src.utils.common import save_json
@@ -33,6 +32,8 @@ class ModelEvaluation:
             with open(self.model_trainer_artifact.trained_model_file_path, "rb") as f:
                 model=pickle.load(f)
 
+                print(f"Model {model}")
+
             X_test, y_test = (
                               test_arr[:,:-1],
                               test_arr[:, -1]
@@ -48,3 +49,6 @@ class ModelEvaluation:
             save_json(Path(self.config.metric_file_path), scores)            
         except Exception as e:
             raise CustomException(e, sys)
+
+
+
