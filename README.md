@@ -1,4 +1,4 @@
-# Modelling Medical Insurance Payouts.
+# Medical Insurance Payouts.
 
 
 <img src="templates/static/images/insurance_claim_form.jpg" width=1000>
