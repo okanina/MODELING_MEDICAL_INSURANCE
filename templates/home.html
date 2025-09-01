@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>claim predictions</title>
+    <link rel ="stylesheet" href ="static/style2.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <form action="{{url_for('predict_datapoint')}}" method="post">
+            <h1>
+                <legend>Health Insurance Claim Predictor</legend>
+            </h1>
+            <div class="mb-3">
+                <label class="form-label">Please enter your age</label>
+                <input class="form-control" type="number" name="age" placeholder="Your age." min="18" max="100">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="form-control" name="sex" placeholder="Please select your gender" required>
+                    <option class="placeholder" selected disabled value="your gender."></option>
+                    <option value="male">
+                        male
+                    </option>
+                    <option value="female">
+                        female
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Please enter your BMI (Body Mass Index)</label>
+                <input class="form-control" type="number" name="bmi" placeholder="Your BMI." min="5">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Please enter your weight</label>
+                <input class="form-control" type="number" name="weight" placeholder="Your weight" min="5">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Do you smoke?</label>
+                <select class="form-control" name="smoker" placeholder="Do you smoke?" required>
+                    <option class="placeholder" selected disabled value="Select your answer"></option>
+                    <option value="yes">
+                        yes
+                    </option>
+                    <option value="no">
+                        no
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Are you diabetic?</label>
+                <select class="form-control" name="diabetic" placeholder="Are you diabetic?" required>
+                    <option class="placeholder" selected disabled value=""></option>
+                    <option value="yes">
+                        yes
+                    </option>
+                    <option value="no">
+                        no
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Do you excercise regulary?</label>
+                <select class="form-control" name="regular_ex" placeholder="Do you excercise regulary?" required>
+                    <option class="placeholder" selected disabled value=""></option>
+                    <option value="yes">
+                        yes
+                    </option>
+                    <option value="no">
+                        no
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Please select your job title.</label>
+                <select class="form-control" name="job_title" placeholder="job title" required>
+                    <option value="placeholder" selected disabled value=""></option>
+
+                    <option value="Academician">
+                        Academician
+                    </option>
+                    <option value="Chef">
+                        Chef
+                    </option>
+                    <option value="HomeMakers">
+                        HomeMakers
+                    </option>
+                    <option value="Dancer">
+                        Dancer
+                    </option>
+
+                    <option value="Singer">
+                        Singer
+                    </option>
+                    <option value="Police">
+                        Police
+                    </option>
+
+                    <option value="Student">
+                        Student
+                    </option>
+
+                    <option value="Doctor">
+                        Doctor
+                    </option>
+                    <option value="Manager">
+                        Manager
+                    </option>
+                    <option value="Photographer">
+                        Photographer
+                    </option>
+                    <option value="Beautician">
+                        Beautician
+                    </option>
+                    <option value="Blogger">
+                        Blogger
+                    </option>
+
+                    <option value="CA">
+                        CA
+                    </option>
+
+                    <option value="FilmMaker">
+                        FilmMaker
+                    </option>
+                    <option value="HouseKeeper">
+                        HouseKeeper
+                    </option>
+                    <option value="FashionDesigner">
+                        FashionDesigner
+                    </option>
+                    <option value="Accountant">
+                        Accountant
+                    </option>
+                    <option value="Technician">
+                        Technician
+                    </option>
+                    <option value="FilmDirector">
+                        FilmDirector
+                    </option>
+                    <option value="Labourer">
+                        Labourer
+                    </option>
+                    <option value="CEO">
+                        CEO
+                    </option>
+
+                    <option value="DefencePersonnels">
+                        DefencePersonnels
+                    </option>
+                    <option value="Analyst">
+                        Analyst
+                    </option>
+                    <option value="Clerks">
+                        Clerks
+                    </option>
+                    <option value="Farmer">
+                        Farmer
+                    </option>
+                    <option value="Politician">
+                        Politician
+                    </option>
+                    <option value="ITProfessional">
+                        ITProfessional
+                    </option>
+                    <option value="some high school">
+                        Some High School
+                    </option>
+                    <option value="GovEmployee">
+                        GovEmployee
+                    </option>
+                    <option value="Actor">
+                        Actor
+                    </option>
+                    <option value="DataScientist">
+                        DataScientist
+                    </option>
+                    <option value="Engineer">
+                        Engineer
+                    </option>
+                    <option value="Architect">
+                        Architect
+                    </option>
+                    <option value="Journalist">
+                        Journalist
+                    </option>
+                    <option value="Buisnessman">
+                        Buisnessman
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">How many dependents do you have?</label>
+                <select class="form-control" name="no_of_dependents" placeholder="How many dependents do you have?"
+                    required>
+                    <option class="placeholder" selected disabled value=""></option>
+                    <option value="0">
+                        0
+                    </option>
+                    <option value="1">
+                        1
+                    </option>
+                    <option value="2">
+                        2
+                    </option>
+                    <option value="3">
+                        3
+                    </option>
+                    <option value="4">
+                        4
+                    </option>
+                    <option value="5">
+                        5
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">What is your bloodpressure?</label>
+                <input class="form-control" type="number" name="bloodpressure" placeholder="Bloodpressure" min="0"
+                    max="200">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Do you have any hereditary diseases?</label>
+                <select class="form-control" name="hereditary_diseases" placeholder="hereditary diseases" required>
+                    <option class="placeholder" selected disabled value=""></option>
+
+                    <option value="NoDisease">
+                        NoDisease
+                    </option>
+                    <option value="Epilepsy">
+                        Epilepsy
+                    </option>
+                    <option value="EyeDisease">
+                        EyeDisease
+                    </option>
+                    <option value="HeartDisease">
+                        HeartDisease
+                    </option>
+                    <option value="Diabetes">
+                        Diabetes
+                    </option>
+                    <option value="Cancer">
+                        Cancer
+                    </option>
+                    <option value="Obesity">
+                        Obesity
+                    </option>
+                    <option value="High BP">
+                        High BP
+                    </option>
+                    <option value="Arthritis">
+                        Arthritis
+                    </option>
+                    <option value="Alzheimer">
+                        Alzheimer
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Please select the city you live in.</label>
+                <select class="form-control" name="city" placeholder="city" required>
+                    <option class="placeholder" selected disabled value=""></option>
+
+                    <option value="NewYork">
+                        NewYork
+                    </option>
+                    <option value="Boston">
+                        Boston
+                    </option>
+                    <option value="Phildelphia">
+                        Phildelphia
+                    </option>
+                    <option value="Pittsburg">
+                        Pittsburg
+                    </option>
+                    <option value="Buffalo">
+                        Buffalo
+                    </option>
+                    <option value="AtlanticCity">
+                        AtlanticCity
+                    </option>
+                    <option value="Portland">
+                        Portland
+                    </option>
+                    <option value="Cambridge">
+                        Cambridge
+                    </option>
+                    <option value="Hartford">
+                        Hartford
+                    </option>
+                    <option value="Springfield">
+                        Springfield
+                    </option>
+                    <option value="Syracuse">
+                        Syracuse
+                    </option>
+                    <option value="Baltimore">
+                        Baltimore
+                    </option>
+                    <option value="York">
+                        York
+                    </option>
+                    <option value="Trenton">
+                        Trenton
+                    </option>
+                    <option value="Warwick">
+                        Warwick
+                    </option>
+                    <option value="WashingtonDC">
+                        WashingtonDC
+                    </option>
+                    <option value="Providence">
+                        Providence
+                    </option>
+                    <option value="Harrisburg">
+                        Harrisburg
+                    </option>
+                    <option value="Newport">
+                        Newport
+                    </option>
+                    <option value="Stamford">
+                        Stamford
+                    </option>
+                    <option value="Worcester">
+                        Worcester
+                    </option>
+                    <option value="Atlanta">
+                        Atlanta
+                    </option>
+                    <option value="Brimingham">
+                        Brimingham
+                    </option>
+                    <option value="Charleston">
+                        Charleston
+                    </option>
+                    <option value="Charlotte">
+                        Charlotte
+                    </option>
+                    <option value="Louisville">
+                        Louisville
+                    </option>
+                    <option value="Memphis">
+                        Memphis
+                    </option>
+                    <option value="Nashville">
+                        Nashville
+                    </option>
+                    <option value="NewOrleans">
+                        NewOrleans
+                    </option>
+                    <option value="Raleigh">
+                        Raleigh
+                    </option>
+                    <option value="Houston">
+                        Houston
+                    </option>
+                    <option value="Georgia">
+                        Georgia
+                    </option>
+                    <option value="Oklahoma">
+                        Oklahoma
+                    </option>
+                    <option value="Orlando">
+                        Orlando
+                    </option>
+                    <option value="Macon">
+                        Macon
+                    </option>
+                    <option value="Huntsville">
+                        Huntsville
+                    </option>
+                    <option value="Knoxville">
+                        Knoxville
+                    </option>
+                    <option value="Florence">
+                        Florence
+                    </option>
+                    <option value="Miami">
+                        Miami
+                    </option>
+                    <option value="Tampa">
+                        Tampa
+                    </option>
+                    <option value="PanamaCity">
+                        PanamaCity
+                    </option>
+                    <option value="Kingsport">
+                        Kingsport
+                    </option>
+                    <option value="Marshall">
+                        Marshall
+                    </option>
+                    <option value="Mandan">
+                        Mandan
+                    </option>
+                    <option value="Waterloo">
+                        Waterloo
+                    </option>
+                    <option value="IowaCity">
+                        IowaCity
+                    </option>
+                    <option value="Columbia">
+                        Columbia
+                    </option>
+                    <option value="Indianapolis">
+                        Indianapolis
+                    </option>
+                    <option value="Cincinnati">
+                    <option value="Cincinnati">
+                        Cincinnati
+                    </option>
+                    <option value="Bloomington">
+                        Bloomington
+                    </option>
+                    <option value="Salina">
+                        Salina
+                    </option>
+                    <option value="KanasCity">
+                        KanasCity
+                    </option>
+                    <option value="Brookings">
+                        Brookings
+                    </option>
+                    <option value="Minot">
+                        Minot
+                    </option>
+                    <option value="Chicago">
+                        Chicago
+                    </option>
+                    <option value="Lincoln">
+                        Lincoln
+                    </option>
+                    <option value="FallsCity">
+                        FallsCity
+                    </option>
+                    <option value="GrandForks">
+                        GrandForks
+                    </option>
+                    <option value="Fargo">
+                        Fargo
+                    </option>
+                    <option value="Cleveland">
+                        Cleveland
+                    </option>
+                    <option value="Canton">
+                        Canton
+                    </option>
+                    <option value="Columbus">
+                        Columbus
+                    </option>
+                    <option value="Rochester">
+                        Rochester
+                    </option>
+                    <option value="Minneapolis">
+                        Minneapolis
+                    </option>
+                    <option value="JeffersonCity">
+                        JeffersonCity
+                    </option>
+                    <option value="Escabana">
+                        Escabana
+                    </option>
+                    <option value="Youngstown">
+                        Youngstown
+                    </option>
+                    <option value="SantaRosa">
+                        SantaRosa
+                    </option>
+                    <option value="Eureka">
+                        Eureka
+                    </option>
+                    <option value="SanFrancisco">
+                        SanFrancisco
+                    </option>
+                    <option value="SanJose">
+                        SanJose
+                    </option>
+                    <option value="LosAngeles">
+                        LosAngeles
+                    </option>
+                    <option value="Oxnard">
+                        Oxnard
+                    </option>
+                    <option value="SanDeigo">
+                        SanDeigo
+                    </option>
+                    <option value="Oceanside">
+                        Oceanside
+                    </option>
+                    <option value="Carlsbad">
+                        Carlsbad
+                    </option>
+                    <option value="Montrose">
+                        Montrose
+                    </option>
+                    <option value="Prescott">
+                        Prescott
+                    </option>
+                    <option value="Fresno">
+                        Fresno
+                    </option>
+                    <option value="Reno">
+                        Reno
+                    </option>
+                    <option value="LasVegas">
+                        LasVegas
+                    </option>
+                    <option value="Tucson">
+                        Tucson
+                    </option>
+                    <option value="SanLuis">
+                        SanLuis
+                    </option>
+                    <option value="Denver">
+                        Denver
+                    </option>
+                    <option value="Kingman">
+                        Kingman
+                    </option>
+                    <option value="Bakersfield">
+                        Bakersfield
+                    </option>
+                    <option value="Mexicali">
+                        Mexicali
+                    </option>
+                    <option value="SilverCity">
+                        SilverCity
+                    </option>
+                    <option value="Pheonix">
+                        Pheonix
+                    </option>
+                    <option value="SantaFe">
+                        SantaFe
+                    </option>
+                    <option value="Lovelock">
+                        Lovelock
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input class="btn-primary" type="submit" value="Submit" required>
+            </div>
+        </div>
+    </form></br>
+        <h3>
+            The predicted claim amount is {{result}}
+        </h3>
+        
+    </body>
+</html>
+</html>

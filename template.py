@@ -27,7 +27,14 @@ list_of_files =[
     "src/logger.py",
     "src/exception.py",
     "requirements.txt",
-    "setup.py"
+    "setup.py",
+    "app.py",
+    "templates/index.html",
+    "templates/home.html",
+    "templates/about.html",
+    "templates/contact.html",
+    "templates/static/style.css",
+    "templates/images"
 ]
 
 for filepath in list_of_files:

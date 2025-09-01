@@ -1,7 +1,7 @@
 import os
 import sys
 import yaml
-import dill
+import pickle
 import json
 from datetime import datetime
 from ensure import ensure_annotations
@@ -40,7 +40,7 @@ def save_obj(file_path, obj):
         os.makedirs(dir_name, exist_ok=True)
 
         with open(file_path, "wb") as file_obj:
-            dill.dump(obj, file_obj)
+            pickle.dump(obj, file_obj)
             
     except Exception as e:
         raise CustomException(e,sys)
@@ -52,4 +52,12 @@ def save_json(path:Path, data:dict):
                 json.dump(data, f)
         except Exception as e:
             raise CustomException(e, sys)
+
+def load_obj(file_path: Path):
+    try:
+        with open(file_path, "rb") as f:
+            return pickle.load(f)
+
+    except Exception as e:
+        raise CustomException(e, sys)
     
